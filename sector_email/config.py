@@ -34,7 +34,11 @@ def _get_int(name: str, default: int) -> int:
     value = os.getenv(name)
     if value is None or value.strip() == "":
         return default
-    return int(value)
+    try:
+        return int(value)
+    except ValueError:
+        print(f"Warning: {name} must be an integer. Using default value {default}.")
+        return default
 
 
 def load_settings() -> Settings:
