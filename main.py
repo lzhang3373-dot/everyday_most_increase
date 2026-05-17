@@ -27,7 +27,7 @@ def main() -> int:
         subject, text, html_body = build_error_email(exc)
         send_email(settings, subject, text, html_body)
         print("Sent error alert email.")
-        return 1
+        return 0
 
 
 if __name__ == "__main__":
