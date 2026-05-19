@@ -2,7 +2,7 @@ name: Daily US Sector Email
 
 on:
   schedule:
-    - cron: "30 22 * * 1-5"
+    - cron: "17 23 * * 1-5"
   workflow_dispatch:
     inputs:
       target_date:
