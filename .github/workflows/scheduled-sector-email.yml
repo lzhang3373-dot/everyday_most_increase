@@ -1,12 +1,8 @@
-name: Daily US Sector Email
+name: Scheduled US Sector Email
 
 on:
-  workflow_dispatch:
-    inputs:
-      target_date:
-        description: "Optional test date, format YYYY-MM-DD"
-        required: false
-        type: string
+  schedule:
+    - cron: "17 23 * * 1-5"
 
 jobs:
   send-sector-email:
@@ -25,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Send daily sector email
+      - name: Send scheduled sector email
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
@@ -36,5 +32,4 @@ jobs:
           MAIL_CC: ${{ secrets.MAIL_CC }}
           TIMEZONE: America/New_York
           DATA_DELAY_MINUTES: "45"
-          TARGET_DATE: ${{ inputs.target_date }}
         run: python main.py
